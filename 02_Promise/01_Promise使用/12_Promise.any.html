@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>12_Promise.any</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * Promise下的any方法，只要参数中有一个Promise实例化对象的状态为fulfilled，则整体结果就会为fulfilled
+             * 如果所有的Promise实例都是rejected，那么结果就是rejected
+             */
+            const pms1 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject("error1");
+                }, 1000);
+            });
+            const pms2 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("ok2");
+                }, 2000);
+            });
+            const pms3 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject("error3");
+                }, 3000);
+            });
+            const pms4 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("ok4");
+                }, 500);
+            });
+            const result = Promise.any([pms1, pms2, pms3, pms4]);
+            console.log(result); // 对应 ok4 的Promise
+        </script>
+    </body>
+</html>

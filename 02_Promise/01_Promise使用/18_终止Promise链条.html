@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>18_终止Promise链条</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * 终止Promise链条主要就是为了返回一个 pending 状态的Promise实例化对象。
+             * 【重要】该方式，可以阻止 finally 的执行。
+             */
+            new Promise((resolve, reject) => {
+                resolve(1);
+            })
+                .then((value) => {
+                    console.log(value);
+                })
+                .then((value) => {
+                    console.log(2);
+                })
+                .then((value) => {
+                    console.log(3);
+                    // 终止后续
+                    return new Promise(() => {});
+                })
+                .then((value) => {
+                    console.log(4);
+                })
+                .then((value) => {
+                    console.log(5);
+                })
+                .catch((reason) => {
+                    console.log(reason);
+                })
+                .finally(() => {
+                    console.log("finally");
+                });
+        </script>
+    </body>
+</html>

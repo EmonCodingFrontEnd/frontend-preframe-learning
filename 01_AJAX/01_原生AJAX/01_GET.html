@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>AJAX GET 请求</title>
+        <style>
+            #result {
+                margin-top: 10px;
+                width: 200px;
+                height: 100px;
+                border: 1px solid #90b;
+            }
+        </style>
+    </head>
+    <body>
+        <button>点击发送请求</button>
+        <div id="result"></div>
+        <script>
+            // 获取button元素
+            const btn = document.querySelector("button");
+            const result = document.querySelector("#result");
+            // 绑定事件
+            btn.addEventListener("click", function () {
+                // 1.创建对象
+                const xhr = new XMLHttpRequest();
+                // 2.初始化 设置请求方法与请求地址
+                // XMLHttpRequest.open(method,url,async) // async:true-异步（默认），false-同步
+                xhr.open(
+                    "GET",
+                    "http://127.0.0.1:8000/server?a=100&b=200&c=300"
+                );
+                // 3.发送
+                xhr.send();
+                // 4.事件绑定，处理服务端返回的结果
+                /**
+                 * on -> 当...的时候
+                 * readystate -> xhr对象中的属性，表示状态
+                 *      0 -> 未初始化
+                 *      1 -> open调用完毕
+                 *      2 -> send调用完毕
+                 *      3 -> 服务端返回了部分结果
+                 *      4 -> 服务端返回了所有结果
+                 * change -> 改变
+                 */
+                xhr.onreadystatechange = function () {
+                    // 判断 （服务端返回了所有结果）
+                    if (xhr.readyState === 4) {
+                        // 判断响应状态码 200 404 403 401 500
+                        // 2xx 成功
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            // 处理结果 响应行、响应头、空行、响应体
+                            // 响应行
+                            console.log(xhr.status); // 状态码
+                            console.log(xhr.statusText); // 状态字符串
+                            // 响应头
+                            console.log(xhr.getAllResponseHeaders()); // 所有响应头
+                            // 响应体
+                            console.log(xhr.response);
+
+                            // 设置 result 的文本
+                            result.innerHTML = xhr.response;
+                        } else {
+                        }
+                    }
+                };
+            });
+        </script>
+    </body>
+</html>

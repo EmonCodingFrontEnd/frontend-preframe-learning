@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>手写Promise_07_执行器函数处理异步行为</title>
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <script>
+            const pms1 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(100);
+                    // reject("error");
+                    // throw "异常";
+                }, 1000);
+            });
+            pms1.then(
+                (value) => {
+                    console.log(value);
+                },
+                (reason) => {
+                    console.log(reason);
+                }
+            );
+            console.log(pms1);
+        </script>
+    </body>
+</html>

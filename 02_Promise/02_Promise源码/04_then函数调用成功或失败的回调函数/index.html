@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>手写Promise_04_then函数调用成功或失败的回调函数</title>
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <!-- 
+            1、任何实例化对象的 __proto__ （隐式原型属性）的值和构造函数中 prototype（显式原型属性）的值相同的
+            2、任何的函数中的 prototype 的值都指向 Object 类型的对象的地址值
+     -->
+        <script>
+            // 1、创建Promise的实例化对象
+            const pms = new Promise((resolve, reject) => {
+                // console.log("我是Promise的执行器函数");
+                // resolve(100);
+                // reject("aaa");
+                throw "异常";
+                // throw new Error("异常信息");
+            });
+            // console.log(pms);
+
+            pms.then(
+                (value) => {
+                    console.log(value);
+                },
+                (reason) => {
+                    console.log(reason);
+                }
+            );
+            console.log("over......");
+        </script>
+    </body>
+</html>

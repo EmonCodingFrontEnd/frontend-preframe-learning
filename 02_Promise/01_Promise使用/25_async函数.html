@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>25_async函数</title>
+    </head>
+    <body>
+        <script>
+            // 以前代码
+            // const pms1 = new Promise((resolve, reject) => {
+            //     // console.log(111);
+            //     resolve("ok");
+            // });
+            // console.log(pms1);
+            // 只不过是从原来的回调地狱写法，修改成了糊掉函数的链式写法。换汤不换药！！！
+            // 使用async结合await的终极目标：就是同步的代码来完成异步的功能。
+            // pms1.then(
+            //     (value) => {
+            //         console.log(value);
+            //     },
+            //     (reason) => {
+            //         console.log(reason);
+            //     }
+            // ).then(
+            //     (value) => {
+            //         console.log(value);
+            //     },
+            //     (reason) => {
+            //         console.log(reason);
+            //     }
+            // );
+
+            // 任何的函数都可以被声明成一个async函数
+            // 因为要实现的就是异步功能（定时器、ajax请求...）
+            // 可能是要将实现的功能封装到一个函数之中，为了更好的表示函数之中是异步，所以在函数的签名添加一个异步标识async
+            async function main() {
+                // 函数的内部可以添加任意的语句来执行，但是其真正的目的主要是为了得到一个Promise对象的状态以及结果值。
+                // console.log("哈哈哈");
+
+                // 情况1：返回非Promise对象的数据
+                // return 100;
+
+                // 情况2：返回的是Promise实例化对象的状态以及结果值将直接影响结果产生的Promise实例化对象。
+                // return new Promise((resolve, reject) => {
+                //     resolve("ok");
+                // });
+
+                // 情况3：抛出异常
+                throw new Error("出错啦");
+            }
+
+            const result = main();
+            // console.log(result);
+            result.then(
+                (value) => {
+                    console.log(value);
+                },
+                (reason) => {
+                    console.log(reason);
+                }
+            );
+        </script>
+    </body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>19_如何修改Promise对象的状态</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * Promise对象的状态其中分为三种： pending、fulfilled、rejected
+             */
+            const pms1 = new Promise((resolve, reject) => {
+                console.log("ok"); // 【重点】如果不调用resolve，也不调用reject，且没有异常，则还是pending
+                // 状态只能更改一次
+                // 成功
+                // resolve("ok");
+                // 失败
+                // reject("error");
+                // 抛出异常
+                // throw "异常了";
+            });
+            console.log(pms1); // [[PromiseState]] : "pending" [[PromiseResult]]: undefined
+        </script>
+    </body>
+</html>

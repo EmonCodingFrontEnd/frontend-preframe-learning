@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>手写Promise_02_Promise实例对象的两个实例属性</title>
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <!-- 
+        1、任何一个构造函数的实例化对象身上都有一个默认的属性，这个属性叫做隐式原型属性（__proto__）
+        2、Promise实例化对象身上还有两个属性
+            一个是  PromiseState : 记录当前promise实例化对象的状态
+            一个是  PromiseResult : 记录当前promise实例化对象的结果值
+     -->
+        <script>
+            // 1、创建Promise的实例化对象
+            const pms = new Promise((resolve, reject) => {
+                console.log("我是Promise的执行器函数");
+            });
+            console.log(pms);
+        </script>
+    </body>
+</html>

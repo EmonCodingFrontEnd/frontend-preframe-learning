@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>27_await表达式的执行顺序问题</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * 如果有同步代码和异步代码同时出现，一定是先执行同步，再执行异步。
+             */
+            async function main() {
+                console.log(111); // 第1
+                const result1 = await Promise.resolve("ok1");
+                console.log(result1); // 第3
+                console.log(222); // 第4
+                console.log(333); // 第5
+                console.log(444); // 第6
+                const result2 = await Promise.resolve("ok2");
+                console.log(result2); // 第7
+            }
+
+            main();
+            console.log(555); // 第2
+        </script>
+    </body>
+</html>

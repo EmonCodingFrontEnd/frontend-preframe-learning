@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>21_指定回调与改变状态先后顺序问题</title>
+    </head>
+    <body>
+        <!-- 
+            问题：改变Promise状态和指定回调函数执行，到底是谁先谁后？
+            回答：都有可能，正常情况下可以是先指定回调再改变状态（promise执行异步任务），也可以是先改变状态再指定回调。
+                若执行器函数中为同步任务，则先修改状态，后指定回调。
+                若执行器函数中为异步任务，则先指定回调，再更改状态，更为常见【promise主要是为了执行异步任务】
+         -->
+        <script>
+            const pms1 = new Promise((resolve, reject) => {
+                // 同步任务
+                // resolve("ok");
+
+                // 异步任务
+                setTimeout(() => {
+                    console.log("执行resolve");
+                    resolve("ok");
+                }, 1000);
+            });
+            setTimeout(() => {
+                console.log("指定then");
+                pms1.then(
+                    (value) => {
+                        console.log(value);
+                    },
+                    (reason) => {
+                        console.log(reason);
+                    }
+                );
+            }, 3000);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>09_模拟接口请求数据_案例_Promise.all</title>
+    </head>
+    <body>
+        <script>
+            // 模拟请求用户列表的数据
+            function getUsersList() {
+                return new Promise((resolve, reject) => {
+                    // 定时器模拟异步
+                    setTimeout(() => {
+                        resolve("请求用户列表的数据...");
+                    }, 1000);
+                });
+            }
+            // 模拟请求轮播图的数据
+            function getBannersList() {
+                return new Promise((resolve, reject) => {
+                    // 定时器模拟异步
+                    setTimeout(() => {
+                        resolve("请求轮播图的数据...");
+                    }, 2000);
+                });
+            }
+            // 模拟请求视频列表的数据
+            function getVideosList() {
+                return new Promise((resolve, reject) => {
+                    // 定时器模拟异步
+                    setTimeout(() => {
+                        reject("请求视频列表的数据...");
+                    }, 3000);
+                });
+            }
+
+            // 模拟程序启动加载
+            function initLoad() {
+                const all = Promise.all([
+                    getUsersList(),
+                    getBannersList(),
+                    getVideosList(),
+                ]);
+                all.then((value) => {
+                    console.log(value);
+                });
+            }
+            initLoad();
+        </script>
+    </body>
+</html>

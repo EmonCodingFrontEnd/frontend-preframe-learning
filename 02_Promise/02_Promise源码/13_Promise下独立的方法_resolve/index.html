@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>手写Promise_13_Promise下独立的方法_resolve</title>
+        <script src="./index.js"></script>
+    </head>
+    <body>
+        <!-- 
+            Promise构造函数中有很多的方法，其中包括resolve、reject...
+            其中resolve方法是可以传递参数的
+            参数分两种情况：
+            - 非Promise实例化对象：返回是一个成功的Promise实例对象
+            - 是Promise实例化对象：传递的Promise对象的状态将决定了Promise对象的状态。
+         -->
+        <script>
+            const pms1 = Promise.resolve(1);
+            console.log(pms1);
+
+            const pms2 = Promise.resolve(
+                new Promise((resolve, reject) => {
+                    resolve(2);
+                })
+            );
+            console.log(pms2);
+
+            const pms3 = Promise.resolve(
+                new Promise((resolve, reject) => {
+                    reject(3);
+                })
+            );
+            console.log(pms3);
+        </script>
+    </body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>13_Promise.race</title>
+    </head>
+    <body>
+        <script>
+            /**
+             * Promise下的race方法需要传递一个参数，参数为数组；数组中的内容表示的是Promise实例化对象。
+             * 如果有最先到达状态的（ pending ==> fulfilled 或者是 pending ==> rejected ），
+             * 不管是成功状态还是失败的状态，都将以这个对象的状态和结果值为准。
+             */
+            const pms1 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject("error1");
+                }, 1000);
+            });
+            const pms2 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("ok2");
+                }, 2000);
+            });
+            const pms3 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    reject("error3");
+                }, 800);
+            });
+            const pms4 = new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("ok4");
+                }, 5000);
+            });
+            const result = Promise.race([pms1, pms2, pms3, pms4]);
+            console.log(result); // 对应 error3 的Promise
+        </script>
+    </body>
+</html>
