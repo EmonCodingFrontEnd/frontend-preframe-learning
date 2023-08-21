@@ -14,7 +14,7 @@ https://www.bilibili.com/read/cv5650633
 
 【Promise】
 
-https://www.bilibili.com/video/BV1Tm4y1h7SY/?p=61&spm_id_from=pageDriver&vd_source=b850b3a29a70c8eb888ce7dff776a5d1
+https://www.bilibili.com/video/BV1Tm4y1h7SY?p=69&vd_source=b850b3a29a70c8eb888ce7dff776a5d1
 
 【Axios】
 
