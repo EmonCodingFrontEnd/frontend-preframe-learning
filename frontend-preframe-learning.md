@@ -486,7 +486,7 @@ $ npm i eslint -D
 
   - **eslint开头的包**是eslint运行包，包含eslint代码
 
-  ![image-20230819135609254](images/image-20230819135609254-1692544447031-2.png)
+  ![image-20230819135609254](images/image-20230819135609254.png)
 
 ### 3.3、生成ESLint配置文件
 
@@ -924,6 +924,8 @@ Babel 通过语法转换器来支持新版本的 JavaScript 语法。
 
 ## 2、使用指南
 
+### 2.1、概览
+
 Babel 工具链是由大量的工具组成的，无论你是 “最终用户” 还是在集成 Babel，这些工具都简化了 Babel 的使用。
 
 - 安装
@@ -936,3 +938,14 @@ $ npm i @babel/core @babel/cli @babel/preset-env -D
 $ npm i @babel/polyfill -S
 ```
 
+- 编译
+
+```shell
+$ ./node_modules/.bin/babel src --out-dir dist
+# 或者，npm@5.2.0之后使用npx命令
+$ npx babel src -d dist
+```
+
+### 2.2、CLI命令行的基本用法
+
+你所需要的所有的 Babel 模块都是作为独立的 npm 包发布的，并且（从版本 7 开始）都是以 `@babel` 作为冠名的。这种模块化的设计能够让每种工具都针对特定使用情况进行设计。 下面我们着重看一下 `@babel/core` 和 `@babel/cli`。
